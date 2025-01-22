@@ -1,0 +1,19 @@
+{
+  "name": "@kushal/prisma",
+  "version": "1.0.0",
+  "main": "dist/index.ts",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "migrate": "prisma migrate dev",
+    "studio": "prisma studio --browser none",
+    "generate": "prisma generate"
+  },
+  "author": "Kushal Goyal",
+  "license": "ISC",
+  "description": "This is a database schema"
+}
