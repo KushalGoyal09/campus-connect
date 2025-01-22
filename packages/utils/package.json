@@ -1,0 +1,22 @@
+{
+  "name": "@kushal/utils",
+  "version": "1.0.0",
+  "main": "dist/index.ts",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "check-types": "tsc --noEmit"
+  },
+  "keywords": [
+    "utils",
+    "helper",
+    "lib"
+  ],
+  "author": "Kushal Goyal",
+  "license": "ISC",
+  "description": "This is a helper package"
+}
