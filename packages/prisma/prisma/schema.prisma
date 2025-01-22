@@ -6,3 +6,121 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id        String    @id @default(cuid())
+  username  String    @unique
+  email     String    @unique
+  password  String
+  name      String
+  collegeId String
+  avatar    String?
+  bio       String?
+  gender    Gender?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  College   College   @relation(fields: [collegeId], references: [id])
+  Comment   Comment[]
+  Like      Like[]
+  Vote      Vote[]
+  Tweet     Tweet[]
+}
+
+enum Gender {
+  Male
+  Female
+  Other
+}
+
+model College {
+  id        String   @id @default(cuid())
+  name      String
+  location  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User[]
+}
+
+model Tweet {
+  id        String    @id @default(cuid())
+  postId    String?   @unique
+  pollId    String?   @unique
+  authorId  String
+  anonymous Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Author    User      @relation(fields: [authorId], references: [id])
+  Post      Post?     @relation(fields: [postId], references: [id])
+  Poll      Poll?     @relation(fields: [pollId], references: [id])
+  Comment   Comment[]
+  Like      Like[]
+}
+
+model Post {
+  id        String      @id @default(cuid())
+  text      String
+  PostImage PostImage[]
+  Tweet     Tweet[]
+  tweetId   String
+}
+
+model PostImage {
+  id       String @id @default(cuid())
+  index    Int
+  imageUrl String
+  postId   String
+  Post     Post   @relation(fields: [postId], references: [id])
+
+  @@unique([postId, index])
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  text      String
+  tweetId   String
+  userId    String
+  User      User     @relation(fields: [userId], references: [id])
+  Tweet     Tweet    @relation(fields: [tweetId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Like {
+  id        String   @id @default(cuid())
+  userId    String
+  tweetId   String
+  Tweet     Tweet    @relation(fields: [tweetId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([userId, tweetId])
+}
+
+model Poll {
+  id              String   @id @default(cuid())
+  text            String
+  multipleOptions Boolean  @default(false)
+  tweetId         String
+  Option          Option[]
+  Tweet           Tweet[]
+}
+
+model Option {
+  id     String @id @default(cuid())
+  index  Int
+  pollId String
+  text   String
+  Poll   Poll   @relation(fields: [pollId], references: [id])
+  Vote   Vote[]
+
+  @@unique([pollId, index])
+}
+
+model Vote {
+  id       String @id @default(cuid())
+  userId   String
+  optionId String
+  Option   Option @relation(fields: [optionId], references: [id])
+  User     User   @relation(fields: [userId], references: [id])
+
+  @@unique([userId, optionId])
+}
