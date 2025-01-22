@@ -19,6 +19,10 @@
         "./userInfo": "./dist/getUserInfo.d.ts",
         "./timeAgo": "./dist/timeAgo.d.ts"
     },
+    "dependencies": {
+        "jose": "^5.9.6",
+        "@kushal/prisma": "*"
+    },
     "keywords": [
         "utils",
         "helper",
