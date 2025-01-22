@@ -1,0 +1,15 @@
+{
+    "name": "proximity",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "proximity",
+        "campus-connect",
+        "Websocket"
+    ],
+    "author": "Kushal Goyal",
+    "description": "Websocket server for the proximity analysis"
+}
