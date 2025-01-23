@@ -6,7 +6,7 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { getTimeAgo } from "@/lib/timeAgo";
+import { getTimeAgo } from "@kushal/utils/timeAgo";
 import { useEffect, useState } from "react";
 
 const TimeAgo = ({ date }: { date: Date }) => {

@@ -1,9 +1,8 @@
 "use server";
 
-import { getToken } from "@/lib/auth";
-import { PrismaClient } from "@prisma/client";
+import { getToken } from "@kushal/utils";
+import { db } from "@kushal/prisma";
 import { cookies } from "next/headers";
-const db = new PrismaClient();
 
 interface LoginResponse {
     success: boolean;

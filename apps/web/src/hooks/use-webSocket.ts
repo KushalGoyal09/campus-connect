@@ -1,6 +1,6 @@
 "use client";
 
-import { getCookie } from "@/lib/getCookie";
+import { getCookie } from "@kushal/utils";
 import { useEffect, useState } from "react";
 
 export const useWebSocket = (url: string) => {

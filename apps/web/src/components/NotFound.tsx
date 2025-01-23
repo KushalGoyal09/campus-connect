@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { HomeIcon, SearchIcon, BookOpenIcon } from "lucide-react"
+import { HomeIcon, BookOpenIcon } from "lucide-react"
 
 interface NotFoundPageProps {
   title?: string

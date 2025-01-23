@@ -2,7 +2,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CreatePostForm } from "./CreatePostForm";
-import { getUserInfo } from "@/lib/getUserInfo";
+import { getUserInfo } from "@kushal/utils";
 
 export default async function CreatePostPage() {
     const userId = (await headers()).get("x-user-id");

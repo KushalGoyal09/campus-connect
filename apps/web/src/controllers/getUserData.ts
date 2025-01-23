@@ -1,5 +1,4 @@
-import { PrismaClient, Gender } from "@prisma/client";
-const db = new PrismaClient();
+import { db, Gender } from "@kushal/prisma";
 
 export interface UserDataResponse {
     success: boolean;
@@ -10,8 +9,8 @@ export interface UserDataResponse {
 export interface User {
     id: string;
     name: string;
-    username:string;
-    email:string;
+    username: string;
+    email: string;
     avatar: string | null;
     bio: string | null;
     gender: Gender | null;
@@ -51,7 +50,7 @@ const getUserData = async (
             id: true,
             name: true,
             username: true,
-            email:true,
+            email: true,
             bio: true,
             avatar: true,
             gender: true,
@@ -77,7 +76,7 @@ const getUserData = async (
         message: "User information successfully fetched",
         user: {
             ...user,
-            isSameUser: user.id === userId
+            isSameUser: user.id === userId,
         },
     };
 };

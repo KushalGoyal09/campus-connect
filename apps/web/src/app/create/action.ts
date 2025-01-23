@@ -1,15 +1,14 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
+import { db } from "@kushal/prisma";
 import {
     getAwsKey,
     getAwsRegion,
     getAwsSecret,
     getS3Bucket,
-} from "@/lib/constants";
+} from "@kushal/utils/constants";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-const db = new PrismaClient();
 
 interface Poll {
     text: string;

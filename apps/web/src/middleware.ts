@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getUserId } from "./lib/auth";
+import { getUserId } from "@kushal/utils";
 
 export async function middleware(request: NextRequest) {
     const token = request.cookies.get("token")?.value;

@@ -1,5 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-const db = new PrismaClient();
+import { db } from "@kushal/prisma";
 
 const addComment = async (userId: string, tweetId: string, text: string) => {
     if (!userId) {

@@ -1,5 +1,5 @@
 import { InfiniteTweetList } from "./InfiniteTweetList";
-import { getUserInfo } from "@/lib/getUserInfo";
+import { getUserInfo } from "@kushal/utils";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import getAllTweets from "@/controllers/getAllTweets";

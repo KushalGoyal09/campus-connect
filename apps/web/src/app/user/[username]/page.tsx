@@ -1,6 +1,6 @@
 import NotFound from "@/components/NotFound";
 import getUserData from "@/controllers/getUserData";
-import { getUserInfoFromUsername } from "@/lib/getUserInfo";
+import { getUserInfoFromUsername } from "@kushal/utils";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import UserProfile from "./Profile";

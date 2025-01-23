@@ -1,4 +1,4 @@
-import { getUserInfo } from "@/lib/getUserInfo";
+import { getUserInfo } from "@kushal/utils";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 

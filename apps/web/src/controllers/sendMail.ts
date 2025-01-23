@@ -1,4 +1,4 @@
-import { getEmailId, getEmailPassword } from "@/lib/constants";
+import { getEmailId, getEmailPassword } from "@kushal/utils";
 import nodemailer from "nodemailer";
 
 const transport = nodemailer.createTransport({

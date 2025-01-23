@@ -1,5 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-const db = new PrismaClient();
+import {db} from "@kushal/prisma"
 
 const getAllUsers = async (userId: string) => {
     try {

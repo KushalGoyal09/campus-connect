@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { HomeIcon, LockIcon, HelpCircleIcon } from "lucide-react"
+import { HomeIcon, LockIcon } from "lucide-react"
 
 interface UnauthorizedPageProps {
   customMessage?: string

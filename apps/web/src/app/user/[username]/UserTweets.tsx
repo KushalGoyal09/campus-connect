@@ -1,6 +1,6 @@
 import getAllUserTweets from "@/controllers/getAllUserTweets";
 import { InfiniteTweetList } from "./TweetList";
-import { getUserInfo } from "@/lib/getUserInfo";
+import { getUserInfo } from "@kushal/utils";
 
 interface UserTweetsProps {
     user: {
