@@ -1,23 +1,21 @@
 {
     "name": "@kushal/utils",
     "version": "1.0.0",
-    "main": "dist/index.ts",
-    "types": "dist/index.d.ts",
+    "main": "src/index.ts",
+    "types": "src/index.ts",
     "files": [
-        "dist/**"
+        "src/**"
     ],
     "scripts": {
-        "dev": "tsc --watch",
-        "build": "tsc",
         "check-types": "tsc --noEmit"
-    },
+    },  
     "exports": {
-        ".": "./dist/index.d.ts",
-        "./auth": "./dist/auth.d.ts",
-        "./constant": "./dist/constants.d.ts",
-        "./cookie": "./dist/getCookie.d.ts",
-        "./userInfo": "./dist/getUserInfo.d.ts",
-        "./timeAgo": "./dist/timeAgo.d.ts"
+        ".": "./src/index.ts",
+        "./auth": "./src/auth.ts",
+        "./constants": "./src/constants.ts",
+        "./userInfo": "./src/getUserInfo.ts",
+        "./cookie": "./src/getCookie.ts",
+        "./timeAgo": "./src/timeAgo.ts"
     },
     "dependencies": {
         "jose": "^5.9.6",
