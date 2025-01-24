@@ -130,6 +130,9 @@ const getUpdatedOptions = async (pollId: string, userId: string) => {
                         },
                     },
                 },
+                orderBy: {
+                    index: "asc",
+                }
             },
         },
     });

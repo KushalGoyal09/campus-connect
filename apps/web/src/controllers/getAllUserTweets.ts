@@ -141,6 +141,9 @@ const getAllUserTweets = async (
                                     },
                                 },
                             },
+                            orderBy: {
+                                index: "asc",
+                            },
                         },
                     },
                 },

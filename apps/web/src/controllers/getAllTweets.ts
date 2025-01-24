@@ -139,6 +139,9 @@ const getAllTweets = async (
                                     },
                                 },
                             },
+                            orderBy: {
+                                index: "asc"
+                            }
                         },
                     },
                 },
