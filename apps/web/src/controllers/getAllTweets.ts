@@ -149,7 +149,7 @@ const getAllTweets = async (
                 createdAt: "desc",
             },
         });
-        const totalPosts = await db.post.count();
+        const totalPosts = await db.tweet.count();
         const hasMore = skip + data.length < totalPosts;
         const tweets = data.map((post) => {
             return {

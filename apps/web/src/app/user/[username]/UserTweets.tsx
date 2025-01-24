@@ -22,6 +22,15 @@ const UserTweets = async ({ user, userId }: UserTweetsProps) => {
         user.username,
         1,
     );
+
+    if (initialTweetResponse.tweets.length === 0) {
+        return (
+            <div className="flex justify-center items-center h-96">
+                <h1 className="text-2xl text-gray-500">No tweets found</h1>
+            </div>
+        );
+    }
+
     return (
         <InfiniteTweetList
             initialTweets={initialTweetResponse.tweets}

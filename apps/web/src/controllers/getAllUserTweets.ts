@@ -1,4 +1,4 @@
-import {db } from "@kushal/prisma"
+import { db } from "@kushal/prisma";
 
 interface Tweet {
     id: string;
@@ -79,7 +79,7 @@ const getAllUserTweets = async (
             where: {
                 Author: {
                     collegeId,
-                    username
+                    username,
                 },
             },
             select: {
@@ -151,7 +151,13 @@ const getAllUserTweets = async (
                 createdAt: "desc",
             },
         });
-        const totalPosts = await db.post.count();
+        const totalPosts = await db.tweet.count({
+            where: {
+                Author: {
+                    username,
+                },
+            },
+        });
         const hasMore = skip + data.length < totalPosts;
         const tweets = data.map((post) => {
             return {
