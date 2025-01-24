@@ -5,6 +5,7 @@ import ErrorPage from "@/components/ErrorPage";
 import { useWebSocket } from "@/hooks/use-webSocket";
 import { useEffect, useState } from "react";
 import { useUserLocation } from "@/hooks/use-location";
+import Map from "./MapComponent";
 
 export default function NearPage() {
     const { webSocket, error } = useWebSocket("ws://localhost:8080");
@@ -41,7 +42,7 @@ export default function NearPage() {
         };
         const intervalId = setInterval(getLocation, 5000);
 
-        return () => clearInterval(intervalId); 
+        return () => clearInterval(intervalId);
     }, []);
 
     useEffect(() => {
@@ -91,6 +92,26 @@ export default function NearPage() {
                 );
             })}
             <button onClick={handleClick}>Send Hello</button>
+            <Map
+                width="800"
+                height="400"
+                center={[28, 77]}
+                zoom={12}
+            >
+                {({ TileLayer, Marker, Popup }) => (
+                    <>
+                        <TileLayer
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        />
+                        <Marker position={[28,77]}>
+                            <Popup>
+                                A pretty CSS3 popup. <br /> Easily customizable.
+                            </Popup>
+                        </Marker>
+                    </>
+                )}
+            </Map>
         </>
     );
 }
