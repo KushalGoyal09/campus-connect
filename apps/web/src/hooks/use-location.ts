@@ -10,22 +10,15 @@ const useUserLocation = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    setLocation({
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude,
-                    });
-                },
-                (err) => setError(err.message),
-            );
-            navigator.geolocation.getCurrentPosition((data) => {
-                console.log(data);
-            });
-        } else {
-            setError("Geolocation is not supported by your browser.");
-        }
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                setLocation({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                });
+            },
+            (err) => setError(err.message),
+        );
     }, []);
 
     return {
