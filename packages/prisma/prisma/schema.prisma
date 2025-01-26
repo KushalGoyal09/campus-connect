@@ -8,22 +8,24 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(cuid())
-  username  String    @unique
-  email     String    @unique
-  password  String
-  name      String
-  collegeId String
-  avatar    String?
-  bio       String?
-  gender    Gender?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  College   College   @relation(fields: [collegeId], references: [id])
-  Comment   Comment[]
-  Like      Like[]
-  Vote      Vote[]
-  Tweet     Tweet[]
+  id              String    @id @default(cuid())
+  username        String    @unique
+  email           String    @unique
+  password        String
+  name            String
+  collegeId       String
+  avatar          String?
+  bio             String?
+  gender          Gender?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  College         College   @relation(fields: [collegeId], references: [id])
+  Comment         Comment[]
+  Like            Like[]
+  Vote            Vote[]
+  Tweet           Tweet[]
+  sentMessage     Message[] @relation("sentMessage")
+  receivedMessage Message[] @relation("receivedMessage")
 }
 
 enum Gender {
@@ -123,4 +125,14 @@ model Vote {
   User     User   @relation(fields: [userId], references: [id])
 
   @@unique([userId, optionId])
+}
+
+model Message {
+  id         String   @id @default(cuid())
+  text       String
+  senderId   String
+  receiverId String
+  Sender     User     @relation(fields: [senderId], references: [id], name: "sentMessage")
+  Receiver   User     @relation(fields: [receiverId], references: [id], name: "receivedMessage")
+  createdAt  DateTime @default(now())
 }

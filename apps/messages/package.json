@@ -1,0 +1,26 @@
+{
+    "name": "messages",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "scripts": {
+        "dev": "npm run build && npm run start",
+        "start": "node dist/index.js",
+        "build": "npx esbuild ./src/index.ts --bundle --platform=node --outdir=./dist",
+        "check-types": "tsc --noEmit"
+    },
+    "keywords": [
+        "websocket",
+        "campus-connect",
+        "messages"
+    ],
+    "author": "Kushal Goyal",
+    "license": "ISC",
+    "description": "websocket server for messages",
+    "devDependencies": {
+        "@types/ws": "^8.5.14",
+        "esbuild": "^0.24.2"
+    },
+    "dependencies": {
+        "ws": "^8.18.0"
+    }
+}
