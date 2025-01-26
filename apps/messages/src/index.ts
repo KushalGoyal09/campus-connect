@@ -1,11 +1,12 @@
-import { WebSocketServer, WebSocket } from "ws";
-import { db } from "@kushal/prisma";
+import { WebSocketServer } from "ws";
 import { getUserId } from "@kushal/utils";
 import { z } from "zod";
+import UserManager from "./UserManager";
+import dotenv from "dotenv";
+dotenv.config({ path: "../../.env" });
 
 const wss = new WebSocketServer({ port: 5000 });
-
-const userMap = new Map<string, WebSocket>();
+const userManager = new UserManager();
 
 const messageSchema = z.object({
     type: z.enum(["sendMessage"]),
@@ -23,42 +24,27 @@ wss.on("connection", async (client) => {
         return;
     }
 
-    userMap.set(userId, client);
+    userManager.addUserConnection(userId, client);
 
     client.on("message", async (message) => {
-        const data = JSON.parse(message.toString());
+        let data;
+        try {
+            data = JSON.parse(message.toString());
+        } catch (error) {
+            userManager.sendErrorToSocket(client, "Invalid JSON");
+            return;
+        }
         const result = messageSchema.safeParse(data);
         if (!result.success) {
-            client.send(
-                JSON.stringify({
-                    type: "error",
-                    payload: "Invalid message",
-                }),
-            );
+            userManager.sendErrorToSocket(client, "Invalid message");
             return;
         }
         const { type, payload } = result.data;
         if (type === "sendMessage") {
-            const { receiverId, text } = payload;
-            const receiverSocket = userMap.get(receiverId);
-            if (receiverSocket) {
-                receiverSocket.send(
-                    JSON.stringify({
-                        type: "messageReceived",
-                        payload: {
-                            text,
-                            senderId: userId,
-                        },
-                    }),
-                );
-            }
-            await db.message.create({
-                data: {
-                    text,
-                    senderId: userId,
-                    receiverId,
-                },
-            });
+            userManager.handleMessage(payload, client);
         }
+    });
+    client.on("close", () => {
+        userManager.removeUserConnection(userId);
     });
 });
